@@ -1,20 +1,11 @@
-import {MONTH_NAMES} from "../const.js";
-import {formatTime} from "../utils.js";
-
+import {formatDateTime, formatTimeIndicators, formatTaskButtons} from "../utils.js";
 
 export const createTaskTemplate = (task) => {
   const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = task;
 
-  const isExpired = dueDate instanceof Date && dueDate < Date.now();
-  const isDateShowing = !!dueDate;
-
-  const date = isDateShowing ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``;
-  const time = isDateShowing ? formatTime(dueDate) : ``;
-
-  const repeatClass = Object.values(repeatingDays).some(Boolean) ? `card--repeat` : ``;
-  const deadlineClass = isExpired ? `card--deadline` : ``;
-  const archiveButtonInactiveClass = isArchive ? `` : `card__btn--disabled`;
-  const favoriteButtonInactiveClass = isFavorite ? `` : `card__btn--disabled`;
+  const {date, time} = formatDateTime(dueDate);
+  const {repeatClass, deadlineClass} = formatTimeIndicators(dueDate, repeatingDays);
+  const {archiveButtonInactiveClass, favoriteButtonInactiveClass} = formatTaskButtons(isArchive, isFavorite);
 
   return `<article class="card card--${color} ${repeatClass} ${deadlineClass}">
     <div class="card__form">
