@@ -1,6 +1,6 @@
-import {formatDateTime, formatTimeIndicators, formatTaskButtons} from "../utils.js";
+import {formatDateTime, formatTimeIndicators, formatTaskButtons, createElement} from "../utils.js";
 
-export const createTaskTemplate = (task) => {
+const createTaskTemplate = (task) => {
   const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = task;
 
   const {date, time} = formatDateTime(dueDate);
@@ -51,3 +51,26 @@ export const createTaskTemplate = (task) => {
     </div>
   </article>`;
 };
+
+export default class Task {
+  constructor(task) {
+    this._task = task;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createTaskTemplate(this._task);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

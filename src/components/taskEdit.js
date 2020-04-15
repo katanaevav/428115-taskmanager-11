@@ -1,5 +1,5 @@
 import {COLORS, DAYS} from "../const.js";
-import {formatDateTime, formatTimeIndicators} from "../utils.js";
+import {formatDateTime, formatTimeIndicators, createElement} from "../utils.js";
 
 const createColorsMarkup = (colors, currentColor) => {
   return colors
@@ -44,7 +44,7 @@ const createRepeatingDaysMarkup = (days, repeatingDays) => {
     .join(`\n`);
 };
 
-export const createTaskEditTemplate = (task) => {
+const createTaskEditTemplate = (task) => {
   const {description, dueDate, color, repeatingDays} = task;
 
   const {date, time} = formatDateTime(dueDate);
@@ -128,3 +128,26 @@ export const createTaskEditTemplate = (task) => {
     </article>`
   );
 };
+
+export default class TaskEdit {
+  constructor(task) {
+    this._task = task;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createTaskEditTemplate(this._task);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
