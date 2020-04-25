@@ -1,5 +1,5 @@
 import {formatDateTime, formatTimeIndicators, formatTaskButtons} from "../utils/common.js";
-import AbstractComponent from "./abstractComponent.js";
+import AbstractComponent from "./abstract-component.js";
 
 const createTaskTemplate = (task) => {
   const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = task;

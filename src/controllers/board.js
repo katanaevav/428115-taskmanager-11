@@ -1,8 +1,8 @@
-import LoadMoreButtonComponent from "../components/loadMoreButton.js";
-import NoTasksComponent from "../components/noTasks.js";
+import LoadMoreButtonComponent from "../components/load-more-button.js";
+import NoTasksComponent from "../components/no-tasks.js";
 import SortComponent, {SortType} from "../components/sorting.js";
 import TaskComponent from "../components/task.js";
-import TaskEditComponent from "../components/taskEdit.js";
+import TaskEditComponent from "../components/task-edit.js";
 import TasksComponent from "../components/tasks.js";
 import {render, remove, replace, RenderPosition} from "../utils/render.js";
 
