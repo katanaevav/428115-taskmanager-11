@@ -1,7 +1,7 @@
 import BoardComponent from "./components/board.js";
 import BoardController from "./controllers/board.js";
 import FilterComponent from "./components/filter.js";
-import SiteMenuComponent from "./components/siteMenu.js";
+import SiteMenuComponent from "./components/site-menu.js";
 import {generateTasks} from "./mock/task.js";
 import {generateFilters} from "./mock/filter.js";
 import {render, RenderPosition} from "./utils/render.js";
